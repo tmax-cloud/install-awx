@@ -25,11 +25,6 @@ kubectl apply -f awx-operator.yaml
 ```bash
 kubectl apply -f awx.yaml
 ```
-`tower_hostname`: 
-
-`tower_image`: 
-
-`tower_ee_images`:
 
 ### 3. login
 id: admin

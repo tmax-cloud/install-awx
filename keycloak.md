@@ -1,6 +1,6 @@
 # New Document
 
-### Keycloack 연동
+### 1. Keycloack 연동
 1. Cert 생성 및 등록
 	- 사용할 certification이 없다면 아래 명령어를 통해 생성
 	- ```$ openssl req -new -x509 -days 365 -nodes -out saml.crt -keyout saml.key ```
@@ -34,8 +34,8 @@
 		- SAML Enabled Identity Providers: 로그인에 사용할 idP에 대한 정보 입력
 			- "oneLogin" : idP의 이름
 			- url과 entity_id의 url은 keycloack의 url 입력
-			- x509cert에 saml.crt를 줄바꿈 없이 한줄로 입력
-3. Key cloak client 설정
+			- x509cert에 saml.crt를 줄바꿈 없이 한줄로 입력  
+3. Key cloak client 설정   
 	- SAML 메타 데이터 저장   
 	``` $ curl -L -k https://awx.example.com/sso/metadata/saml > tower_saml.xml ```
     - keycloack admin page 로그인 후 Clients -> Create -> import -> Select file 진입
@@ -45,8 +45,8 @@
     	- Client Signature Required -> OFF
     	- Root URL -> AWX url   
 		   
-        - ![keycloak_setting_1](./img/keycloak_setting_1.png)
-		- ![keycloak_setting_2](./img/keycloak_setting_2.png)
+        ![keycloak_setting_1](./img/keycloak_setting_1.png)   
+		![keycloak_setting_2](./img/keycloak_setting_2.png)   
 
         - 입력 완료 후 save
         - Clients -> Mappers -> Create
@@ -62,7 +62,7 @@
 		- user_permanent id   
 		 ![mapper5](./img/mapper_user_permanent_id.png)
          
-### 로그인 확인   
+### 2. 로그인 확인   
 - AWX에 접속하여 SSO 연동 및 로그인 확인    
 ![gglogin](./img/login.png)
 - Found an Attribute element with duplicated Name” 에러가 발생시,   
