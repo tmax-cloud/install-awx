@@ -31,5 +31,13 @@ kubectl apply -f awx.yaml
 
 `tower_ee_images`:
 
+### 3. login
+id: admin
+password: 아래 명령어를 쳐서 나오는 값을 패스워드로 사용
+```
+kubectl get secret awx-admin-password -o jsonpath='{.data.password}' | base64 --decode
+```
 
-## 삭제 가이드
+
+#### Keycloak 연동
+[keycloak 연동 가이드](keycloak.md) 참고
