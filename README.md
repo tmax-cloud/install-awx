@@ -27,7 +27,7 @@ kubectl apply -f awx.yaml
 ```
 
 ### 3. login
-id: admin
+id: admin   
 password: 아래 명령어를 쳐서 나오는 값을 패스워드로 사용
 ```
 kubectl get secret awx-admin-password -o jsonpath='{.data.password}' | base64 --decode
