@@ -26,8 +26,33 @@ kubectl apply -f awx-operator.yaml
 kubectl apply -f awx.yaml
 ```
 
+```
+---
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx
+spec:
+  tower_ingress_type: Ingress
+  tower_hostname: awx.example.com
+  tower_image: quay.io/ansible/awx:18.0.0
+  tower_ee_images:
+    - name: awx-ee
+      image: quay.io/ansible/awx-ee:0.2.0
+
+```
+'metadata-> name' :awx deployment에 사용할 이름
+
+`tower_hostname`: awx 주소로 사용할 값
+
+`tower_image`: awx 도커 이미지
+
+`tower_ee_images`: awx_ee(execution environment) 도커 이미지
+
 ### 3. login
-id: admin   
+위에서 사용한 hostname으로 접속   
+![awx.yaml](img/login_1.PNG){: width="50%"}
+id: admin
 password: 아래 명령어를 쳐서 나오는 값을 패스워드로 사용
 ```
 kubectl get secret awx-admin-password -o jsonpath='{.data.password}' | base64 --decode
