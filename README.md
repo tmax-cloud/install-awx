@@ -50,10 +50,10 @@ spec:
 `tower_ee_images`: awx_ee(execution environment) 도커 이미지
 
 ### 3. login
-위에서 사용한 hostname으로 접속   
-![awx.yaml](img/login_1.PNG){: width="50%"}
-id: admin
-password: 아래 명령어를 쳐서 나오는 값을 패스워드로 사용
+위에서 사용한 hostname으로 접속     
+![awx.yaml](img/login_1.PNG)   
+id: admin   
+password: 아래 명령어를 쳐서 나오는 값을 패스워드로 사용   
 ```
 kubectl get secret awx-admin-password -o jsonpath='{.data.password}' | base64 --decode
 ```
