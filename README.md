@@ -63,4 +63,4 @@ kubectl get secret awx-admin-password -o jsonpath='{.data.password}' | base64 --
 [keycloak 연동 가이드](keycloak.md) 참고
 
 #### ssh-proxy 방법
-[ssh-proxy 사용 가이드](ssh-proxy-guide) 참고
+[ssh-proxy 사용 가이드](ssh-proxy-guide.md) 참고
