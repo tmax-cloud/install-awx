@@ -3,7 +3,7 @@
 
 
 ## 1. 로그인
-![login](img/login.png)
+![login](img/tuto_login.png)
 
 id: admin
 

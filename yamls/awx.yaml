@@ -9,4 +9,4 @@ spec:
   tower_image: quay.io/ansible/awx:18.0.0
   tower_ee_images:
     - name: awx-ee
-      image: quay.io/ansible/awx-ee:0.2.0
+      image: quay.io/ansible/awx-ee:0.1.1
