@@ -80,6 +80,6 @@ Name 입력, Inventory 및 Project 지정, playbook 선택, Credential 지정
 Variables로 필요한 변수 지정 및 저장
 
 
-![template\_detail](img/tuto_template_detail.png)
+![template\_detail](img/tuto_template_details.png)
 
 저장 후 Launch
