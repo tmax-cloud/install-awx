@@ -3,7 +3,7 @@
 ## 구성 요소 및 버전
 awx-operator ([quay.io/awx-operator:0.8.0]())
 
-awx ([quay.io/ansible/awx:18.0.0]())
+awx ([quay.io/ansible/awx:19.0.0]())
 
 awx-ee ([quay.io/ansible/awx-ee:0.1.1]())
 
