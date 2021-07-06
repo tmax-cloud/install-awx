@@ -1,52 +1,74 @@
-특정 host(jump host)를 통해서만 target host에 접근할 수 있는 상황 (jump host를 ssh-proxy로 사용하는 상황)
-ansible 설치 노드, jump host, target host 총 3대가 있다고 가정
+- 특정 host(jump host)를 통해서만 target hosts(yellow zone)에 접근할 수 있는 상황 (jump host를 ssh-proxy로 사용하는 상황)
+- awx에서 jump host를 사용할 수 있게 설정하는 방법 정리
 
-### 1. ansible 설치 노드에서 아래와 같이 ssh config 파일 수정
+### 1. 새로운 인벤토리 생성
 
-```
-vim ~/.ssh/config
-------------------------------------------------------
-HOST jump
-	User ec2-user
-	Hostname 11.11.11.11  
-	IdentityFile {pem-file-path}
-  
-  
 
-HOST target
-  User ec2-user
-	Hostname 22.22.22.22    
-	IdentityFile {pem-file-path}
-  ProxyCommand ssh bastion -W %h:%p
-```
+![create-inventory](./img/create-inventory.png)
 
-### 2. ansible hosts 추가
-```
-vim /etc/ansible/hosts
-------------------------------------------------------
-~~~
-~~~
-jump
-target
+- Variables에 다음 추가
 
 ```
+ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -W %h:%p {{ jh_ssh_user }}@{{ jh_ip }} -i $JH_SSH_PRIVATE_KEY -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"'
+```
 
-### 3. 테스트
+
+
+### 2. Credential type 생성
+
+![create-credential-type](./img/create-credential-type.png)
+
+- INPUT CONFIGURATION
+
 ```
-ansible all -m ping
--------------------------------------
-jump | SUCCESS => {
-    "ansible_facts": {
-        "discovered_interpreter_python": "/usr/libexec/platform-python"
-    },
-    "changed": false,
-    "ping": "pong"
-}
-target | SUCCESS => {
-    "ansible_facts": {
-        "discovered_interpreter_python": "/usr/libexec/platform-python"
-    },
-    "changed": false,
-    "ping": "pong"
-}
+fields:
+  - id: jh_ip
+    type: string
+    label: Jumphost IP Address
+  - id: jh_ssh_user
+    type: string
+    label: Username to login with ssh in jumphost
+  - id: jh_ssh_private_key
+    type: string
+    label: SSH Private Key for Jumphost
+    format: ssh_private_key
+    secret: true
+    multiline: true
+required:
+  - jh_ip
+  - jh_ssh_user
+  - jh_ssh_private_key
+
 ```
+
+- INJECTOR CONFIGURATION
+```
+env:
+  JH_SSH_PRIVATE_KEY: '{{tower.filename.jh_ssh_private_key}}'
+file:
+  template.jh_ssh_private_key: '{{ jh_ssh_private_key }}'
+extra_vars:
+  jh_ip: '{{ jh_ip }}'
+  jh_ssh_user: '{{ jh_ssh_user }}'
+```
+
+
+### 3. Credential 생성
+- 아래와 같이 jumphost, yellowzone에 대해 각각 credential 생성
+
+![jumphost_credential](./img/jumphost_credential.png)
+
+![yellowzone_credential](./img/yellowzone_credential.png)
+
+
+
+### 4. 테스트
+- 테스트용 프로젝트 생성 ([hello.yaml](https://github.com/thinkahead/DeveloperRecipes/blob/master/Jumphosts/hello.yaml), git 사용)
+![juhost_test_project](./img/jumphost_test_project.png)
+
+- 템플릿 생성
+  - 1,3에서 만든 Inventory와 credential 사용
+  ![juhost_test_template](./img/jumphost_test_template.png)
+
+- 템플릿 실행 후 결과 확인
+  ![juhost_test_result](./img/jumphost_test_result.png)
