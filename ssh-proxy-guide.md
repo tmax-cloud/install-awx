@@ -1,5 +1,6 @@
-- 특정 host(jump host)를 통해서만 target hosts(yellow zone)에 접근할 수 있는 상황 (jump host를 ssh-proxy로 사용하는 상황)
-- awx에서 jump host를 사용할 수 있게 설정하는 방법 정리
+# SSH-Proxy 가이드
+특정 host(jump host)를 통해서만 target hosts(yellow zone)에 접근할 수 있을 때
+AWX에서 ssh-proxy를 설정하는 방법에 대한 가이드입니다.
 
 ### 1. 새로운 인벤토리 생성
 
@@ -64,6 +65,7 @@ extra_vars:
 
 ### 4. 테스트
 - 테스트용 프로젝트 생성 ([hello.yaml](https://github.com/thinkahead/DeveloperRecipes/blob/master/Jumphosts/hello.yaml), git 사용)
+
 ![juhost_test_project](./img/jumphost_test_project.png)
 
 - 템플릿 생성
