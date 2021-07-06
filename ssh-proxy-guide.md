@@ -66,11 +66,11 @@ extra_vars:
 ### 4. 테스트
 - 테스트용 프로젝트 생성 ([hello.yaml](https://github.com/thinkahead/DeveloperRecipes/blob/master/Jumphosts/hello.yaml), git 사용)
 
-![juhost_test_project](./img/jumphost_test_project.png)
+![jumphost_test_project](./img/jumphost_test_project.PNG)
 
 - 템플릿 생성
   - 1,3에서 만든 Inventory와 credential 사용
-  ![juhost_test_template](./img/jumphost_test_template.png)
+  ![jumphost_test_template](./img/jumphost_test_template.png)
 
 - 템플릿 실행 후 결과 확인
-  ![juhost_test_result](./img/jumphost_test_result.png)
+  ![jumphost_test_result](./img/jumphost_test_result.png)
