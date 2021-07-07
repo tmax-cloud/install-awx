@@ -34,8 +34,9 @@ metadata:
   name: awx
 spec:
   tower_ingress_type: Ingress
+  tower_ingress_annotations: "kubernetes.io/ingress.class: nginx-shd"
   tower_hostname: awx.example.com
-  tower_image: quay.io/ansible/awx:18.0.0
+  tower_image: quay.io/ansible/awx:19.0.0
   tower_ee_images:
     - name: awx-ee
       image: quay.io/ansible/awx-ee:0.1.1
