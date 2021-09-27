@@ -4,10 +4,18 @@ kind: AWX
 metadata:
   name: awx
 spec:
-  tower_ingress_type: Ingress
-  tower_ingress_annotations: "kubernetes.io/ingress.class: nginx-shd"
-  tower_hostname: awx.example.com
-  tower_image: quay.io/ansible/awx:19.0.0
-  tower_ee_images:
+  ingress_type: Ingress
+  ingress_annotations: "kubernetes.io/ingress.class: nginx-shd"
+  hostname: awx.example.com
+  image: quay.io/ansible/awx
+  image_version: 19.3.0
+  redis_image: docker.io/redis
+  redis_image_version: latest
+  postgres_image: postgres
+  postgres_image_version: "12"
+  init_container_image: quay.io/centos/centos
+  init_container_image_version: "8"
+  ee_images:
     - name: awx-ee
-      image: quay.io/ansible/awx-ee:0.1.1
+      image: quay.io/ansible/awx-ee:0.6.0
+  control_plane_ee_image: quay.io/ansible/awx-ee:0.6.0

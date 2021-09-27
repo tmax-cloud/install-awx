@@ -1,11 +1,11 @@
 # Ansible AWX 설치 가이드
 
 ## 구성 요소 및 버전
-awx-operator ([quay.io/awx-operator:0.8.0]())
+awx-operator ([quay.io/awx-operator:0.13.0]())
 
-awx ([quay.io/ansible/awx:19.0.0]())
+awx ([quay.io/ansible/awx:19.3.0]())
 
-awx-ee ([quay.io/ansible/awx-ee:0.1.1]())
+awx-ee ([quay.io/ansible/awx-ee:0.6.0]())
 
 redis ([redis:latest](https://hub.docker.com/layers/redis/library/redis/latest/images/sha256-b4b16c2978639e1423f3618732a75bb53967c6e3bf3722a3f8c31f9691743eea?context=explore))
 
@@ -33,22 +33,29 @@ kind: AWX
 metadata:
   name: awx
 spec:
-  tower_ingress_type: Ingress
-  tower_ingress_annotations: "kubernetes.io/ingress.class: nginx-shd"
-  tower_hostname: awx.example.com
-  tower_image: quay.io/ansible/awx:19.0.0
-  tower_ee_images:
+  ingress_type: Ingress
+  ingress_annotations: "kubernetes.io/ingress.class: nginx-shd"
+  hostname: awx.example.com
+  image: quay.io/ansible/awx
+  image_version: 19.3.0
+  redis_image: docker.io/redis
+  redis_image_version: latest
+  postgres_image: postgres
+  postgres_image_version: "12"
+  init_container_image: quay.io/centos/centos
+  init_container_image_version: "8"
+  ee_images:
     - name: awx-ee
-      image: quay.io/ansible/awx-ee:0.1.1
-
+      image: quay.io/ansible/awx-ee:0.6.0
+  control_plane_ee_image: quay.io/ansible/awx-ee:0.6.0
 ```
 `metadata-> name` :awx deployment에 사용할 이름
 
-`tower_hostname`: awx 주소로 사용할 값
+`hostname`: awx 주소로 사용할 값
 
-`tower_image`: awx 도커 이미지
+`image`: awx 도커 이미지
 
-`tower_ee_images`: awx_ee(execution environment) 도커 이미지
+`ee_images`: awx_ee(execution environment) 도커 이미지
 
 
 ### 3. login
