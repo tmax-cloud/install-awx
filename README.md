@@ -5,7 +5,7 @@ awx-operator ([quay.io/awx-operator:0.13.0]())
 
 awx ([quay.io/ansible/awx:19.3.0]())
 
-awx-ee ([quay.io/ansible/awx-ee:0.6.0]())
+awx-ee ([quay.io/ansible/awx-ee:latest]())
 
 redis ([redis:latest](https://hub.docker.com/layers/redis/library/redis/latest/images/sha256-b4b16c2978639e1423f3618732a75bb53967c6e3bf3722a3f8c31f9691743eea?context=explore))
 
@@ -46,8 +46,8 @@ spec:
   init_container_image_version: "8"
   ee_images:
     - name: awx-ee
-      image: quay.io/ansible/awx-ee:0.6.0
-  control_plane_ee_image: quay.io/ansible/awx-ee:0.6.0
+      image: quay.io/ansible/awx-ee:latest
+  control_plane_ee_image: quay.io/ansible/awx-ee:latest
 ```
 `metadata-> name` :awx deployment에 사용할 이름
 
