@@ -44,10 +44,6 @@ spec:
   postgres_image_version: "12"
   init_container_image: quay.io/centos/centos
   init_container_image_version: "8"
-  ee_images:
-    - name: awx-ee
-      image: quay.io/ansible/awx-ee:0.6.0
-  control_plane_ee_image: quay.io/ansible/awx-ee:0.6.0
 ```
 `metadata-> name` :awx deployment에 사용할 이름
 
