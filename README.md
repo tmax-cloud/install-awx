@@ -78,3 +78,7 @@ kubectl get secret awx-admin-password -o jsonpath='{.data.password}' | base64 --
 
 #### ssh-proxy 방법
 [ssh-proxy 사용 가이드](ssh-proxy-guide.md) 참고
+
+
+## Documents
+[awx-operator Readme](https://github.com/ansible/awx-operator/tree/0.13.0)
