@@ -5,7 +5,7 @@ awx-operator ([quay.io/awx-operator:0.13.0]())
 
 awx ([quay.io/ansible/awx:19.3.0]())
 
-awx-ee ([quay.io/ansible/awx-ee:latest]())
+awx-ee ([quay.io/ansible/awx-ee:0.5.0]())
 
 redis ([redis:latest](https://hub.docker.com/layers/redis/library/redis/latest/images/sha256-b4b16c2978639e1423f3618732a75bb53967c6e3bf3722a3f8c31f9691743eea?context=explore))
 
@@ -46,16 +46,22 @@ spec:
   init_container_image_version: "8"
   ee_images:
     - name: awx-ee
-      image: quay.io/ansible/awx-ee:latest
-  control_plane_ee_image: quay.io/ansible/awx-ee:latest
+      image: quay.io/ansible/awx-ee:0.5.0
+  control_plane_ee_image: quay.io/ansible/awx-ee:0.5.0
 ```
 `metadata-> name` :awx deployment에 사용할 이름
 
 `hostname`: awx 주소로 사용할 값
 
-`image`: awx 도커 이미지
+`image`: awx 도커 이미지 (default=19.3.0)
 
-`ee_images`: awx_ee(execution environment) 도커 이미지
+`ee_images`: awx_ee(execution environment) 도커 이미지 (default=latest)
+
+`control_plane_ee_image`: control plane으로 사용할 awx-ee 이미지 (default=latest)
+
+이미지의 버전이나 태그를 지정하지 않을 시에는 default로 지정된 이미지가 사용되며 default 값은 awx-operator/roles/installer/defaults/main.yaml에서 확인 가능 (ex. [https://github.com/ansible/awx-operator/blob/0.13.0/roles/installer/defaults/main.yml](https://github.com/ansible/awx-operator/blob/0.13.0/roles/installer/defaults/main.yml))
+
+테스트 환경에서는 ingress_annotations 옵션 주석 처리 및 필요에따라 활성화
 
 
 ### 3. login
