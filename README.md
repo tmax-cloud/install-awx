@@ -34,7 +34,9 @@ metadata:
   name: awx
 spec:
   ingress_type: Ingress
-  ingress_annotations: "kubernetes.io/ingress.class: nginx-shd"
+  ingress_annotations: |
+     kubernetes.io/ingress.class: "<ingress_class_name>"
+     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
   hostname: awx.example.com
   image: quay.io/ansible/awx
   image_version: 19.3.0
@@ -49,15 +51,17 @@ spec:
       image: quay.io/ansible/awx-ee:0.5.0
   control_plane_ee_image: quay.io/ansible/awx-ee:0.5.0
 ```
-`metadata-> name` :awx deployment에 사용할 이름
+`metadata.name` :awx deployment에 사용할 이름
 
-`hostname`: awx 주소로 사용할 값
+`spec.ingress_annotations.kubernetes.io/ingress.class` : ingress class 지정
 
-`image`: awx 도커 이미지 (default=19.3.0)
+`spec.hostname`: awx 주소로 사용할 값
 
-`ee_images`: awx_ee(execution environment) 도커 이미지 (default=latest)
+`spec.image`: awx 도커 이미지 (default=19.3.0)
 
-`control_plane_ee_image`: control plane으로 사용할 awx-ee 이미지 (default=latest)
+`spec.ee_images`: awx_ee(execution environment) 도커 이미지 (default=latest)
+
+`spec.control_plane_ee_image`: control plane으로 사용할 awx-ee 이미지 (default=latest)
 
 이미지의 버전이나 태그를 지정하지 않을 시에는 default로 지정된 이미지가 사용되며 default 값은 awx-operator/roles/installer/defaults/main.yaml에서 확인 가능 (ex. [https://github.com/ansible/awx-operator/blob/0.13.0/roles/installer/defaults/main.yml](https://github.com/ansible/awx-operator/blob/0.13.0/roles/installer/defaults/main.yml))
 
