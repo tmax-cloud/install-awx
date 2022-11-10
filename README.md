@@ -67,6 +67,22 @@ spec:
 
 테스트 환경에서는 ingress_annotations 옵션 주석 처리 및 필요에따라 활성화
 
+### 2-1. Using https with ingress
+위와 같이 ingress를 사용하여 deploy 시, 기본적으로 http 사용
+https 지원을 위해서는 deploy 이후에 아래와 같이 ingress 수정 필요
+
+```bash
+$ kubectl edit ingress awx-ingress
+```
+```
+spec:
+  .
+  .
+  .
+  tls:
+  - hosts:
+    - awx.example.com
+```
 
 ### 3. login
 위에서 사용한 hostname으로 접속     
