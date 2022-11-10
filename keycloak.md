@@ -1,6 +1,6 @@
-# Keycloack 연동 가이드
+# Keycloak 연동 가이드
 
-### 1. Keycloack 연동
+### 1. Keycloak 연동
 1. Cert 생성 및 등록
 	- 사용할 certification이 없다면 아래 명령어를 통해 생성
 	- ```$ openssl req -new -x509 -days 365 -nodes -out saml.crt -keyout saml.key ```
@@ -38,7 +38,7 @@
 3. Key cloak client 설정   
 	- SAML 메타 데이터 저장   
 	``` $ curl -L -k https://awx.example.com/sso/metadata/saml > tower_saml.xml ```
-    - keycloack admin page 로그인 후 Clients -> Create -> import -> Select file 진입
+    - keycloak admin page 로그인 후 Clients -> Create -> import -> Select file 진입
     - Curl로 저장한 tower_saml.xml 파일 선택 및 다음 사진 참고하여 아래 설정들 변경
     	- Sign Assertitions -> On
     	- Encrypt Assertions -> OFF
