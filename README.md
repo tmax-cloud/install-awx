@@ -53,7 +53,7 @@ spec:
 ```
 `metadata.name` :awx deployment에 사용할 이름
 
-`spec.ingress_annotations.kubernetes.io/ingress.class` : ingress class 지정
+`spec.ingress_annotations.kubernetes.io/ingress.class` : annotation으로 ingress class 지정 또는 아래 2-1과 같이 ingress 수정하여 지정
 
 `spec.hostname`: awx 주소로 사용할 값
 
@@ -68,7 +68,7 @@ spec:
 테스트 환경에서는 ingress_annotations 옵션 주석 처리 및 필요에따라 활성화
 
 ### 2-1. Using https with ingress
-위와 같이 ingress를 사용하여 deploy 시, 기본적으로 http 사용
+위와 같이 ingress를 사용하여 deploy 시, 기본적으로 http 사용하며 
 https 지원을 위해서는 deploy 이후에 아래와 같이 ingress 수정 필요
 
 ```bash
@@ -76,6 +76,7 @@ $ kubectl edit ingress awx-ingress
 ```
 ```
 spec:
+  ingressClassName: <ingress_class_name>
   .
   .
   .
