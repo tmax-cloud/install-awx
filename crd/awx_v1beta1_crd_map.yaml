@@ -1,0 +1,444 @@
+---
+apiVersion: "apiextensions.k8s.io/v1"
+kind: "CustomResourceDefinition"
+metadata:
+  name: "awxs.awx.ansible.com"
+spec:
+  group: "awx.ansible.com"
+  names:
+    kind: "AWX"
+    listKind: "AWXList"
+    plural: "awxs"
+    singular: "awx"
+  scope: "Namespaced"
+  versions:
+  - name: "v1beta1"
+    served: true
+    storage: true
+    subresources:
+      status: {}
+    schema:
+      openAPIV3Schema:
+        description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema"
+        properties:
+          spec:
+            properties:
+              deployment_type:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.deployment_type"
+                type: "string"
+              kind:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.kind"
+                type: "string"
+              api_version:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.api_version"
+                type: "string"
+              task_privileged:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.task_privileged"
+                type: "boolean"
+                default: false
+              admin_user:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.admin_user"
+                type: "string"
+                default: "admin"
+              hostname:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.hostname"
+                type: "string"
+              admin_email:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.admin_email"
+                type: "string"
+              admin_password_secret:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.admin_password_secret"
+                type: "string"
+              postgres_configuration_secret:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.postgres_configuration_secret"
+                type: "string"
+              old_postgres_configuration_secret:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.old_postgres_configuration_secret"
+                type: "string"
+              postgres_label_selector:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.postgres_label_selector"
+                type: "string"
+              secret_key_secret:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.secret_key_secret"
+                type: "string"
+              broadcast_websocket_secret:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.broadcast_websocket_secret"
+                type: "string"
+              extra_volumes:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.extra_volumes"
+                type: "string"
+              service_type:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.service_type"
+                type: "string"
+                enum:
+                - "LoadBalancer"
+                - "loadbalancer"
+                - "ClusterIP"
+                - "clusterip"
+                - "NodePort"
+                - "nodeport"
+              ingress_type:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.ingress_type"
+                type: "string"
+                enum:
+                - "none"
+                - "Ingress"
+                - "ingress"
+                - "Route"
+                - "route"
+              ingress_path:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.ingress_path"
+                type: "string"
+              ingress_annotations:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.ingress_annotations"
+                type: "string"
+              ingress_tls_secret:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.ingress_tls_secret"
+                type: "string"
+              loadbalancer_annotations:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.loadbalancer_annotations"
+                type: "string"
+              loadbalancer_protocol:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.loadbalancer_protocol"
+                type: "string"
+                default: "http"
+                enum:
+                - "http"
+                - "https"
+              loadbalancer_port:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.loadbalancer_port"
+                type: "integer"
+                default: 80
+              route_host:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.route_host"
+                type: "string"
+              route_tls_termination_mechanism:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.route_tls_termination_mechanism"
+                type: "string"
+                default: "Edge"
+                enum:
+                - "Edge"
+                - "edge"
+                - "Passthrough"
+                - "passthrough"
+              route_tls_secret:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.route_tls_secret"
+                type: "string"
+              node_selector:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.node_selector"
+                type: "string"
+              service_labels:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.service_labels"
+                type: "string"
+              tolerations:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.tolerations"
+                type: "string"
+              image:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.image"
+                type: "string"
+              image_version:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.image_version"
+                type: "string"
+              ee_images:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.ee_images"
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    name:
+                      type: "string"
+                    image:
+                      type: "string"
+              control_plane_ee_image:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.control_plane_ee_image"
+                type: "string"
+              ee_pull_credentials_secret:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.ee_pull_credentials_secret"
+                type: "string"
+              image_pull_policy:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.image_pull_policy"
+                type: "string"
+                default: "IfNotPresent"
+                enum:
+                - "Always"
+                - "always"
+                - "Never"
+                - "never"
+                - "IfNotPresent"
+                - "ifnotpresent"
+              image_pull_secret:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.image_pull_secret"
+                type: "string"
+              task_resource_requirements:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.task_resource_requirements"
+                properties:
+                  requests:
+                    properties:
+                      cpu:
+                        type: "string"
+                      memory:
+                        type: "string"
+                      storage:
+                        type: "string"
+                    type: "object"
+                  limits:
+                    properties:
+                      cpu:
+                        type: "string"
+                      memory:
+                        type: "string"
+                      storage:
+                        type: "string"
+                    type: "object"
+                type: "object"
+              web_resource_requirements:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.web_resource_requirements"
+                properties:
+                  requests:
+                    properties:
+                      cpu:
+                        type: "string"
+                      memory:
+                        type: "string"
+                      storage:
+                        type: "string"
+                    type: "object"
+                  limits:
+                    properties:
+                      cpu:
+                        type: "string"
+                      memory:
+                        type: "string"
+                      storage:
+                        type: "string"
+                    type: "object"
+                type: "object"
+              ee_resource_requirements:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.ee_resource_requirements"
+                properties:
+                  requests:
+                    properties:
+                      cpu:
+                        type: "string"
+                      memory:
+                        type: "string"
+                      storage:
+                        type: "string"
+                    type: "object"
+                  limits:
+                    properties:
+                      cpu:
+                        type: "string"
+                      memory:
+                        type: "string"
+                      storage:
+                        type: "string"
+                    type: "object"
+                type: "object"
+              service_account_annotations:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.service_account_annotations"
+                type: "string"
+              replicas:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.replicas"
+                type: "integer"
+                default: 1
+                format: "int32"
+              garbage_collect_secrets:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.garbage_collect_secrets"
+                default: false
+                type: "boolean"
+              create_preload_data:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.create_preload_data"
+                default: true
+                type: "boolean"
+              task_args:
+                type: "array"
+                items:
+                  type: "string"
+              task_command:
+                type: "array"
+                items:
+                  type: "string"
+              web_args:
+                type: "array"
+                items:
+                  type: "string"
+              web_command:
+                type: "array"
+                items:
+                  type: "string"
+              task_extra_env:
+                type: "string"
+              web_extra_env:
+                type: "string"
+              ee_extra_env:
+                type: "string"
+              ee_extra_volume_mounts:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.ee_extra_volume_mounts"
+                type: "string"
+              task_extra_volume_mounts:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.task_extra_volume_mounts"
+                type: "string"
+              web_extra_volume_mounts:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.web_extra_volume_mounts"
+                type: "string"
+              redis_image:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.redis_image"
+                type: "string"
+              redis_image_version:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.redis_image_version"
+                type: "string"
+              init_container_image:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.init_container_image"
+                type: "string"
+              init_container_image_version:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.init_container_image_version"
+                type: "string"
+              init_container_extra_commands:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.init_container_extra_commands"
+                type: "string"
+              init_container_extra_volume_mounts:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.init_container_extra_volume_mounts"
+                type: "string"
+              postgres_image:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.postgres_image"
+                type: "string"
+              postgres_image_version:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.postgres_image_version"
+                type: "string"
+              postgres_selector:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.postgres_selector"
+                type: "string"
+              postgres_tolerations:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.postgres_tolerations"
+                type: "string"
+              postgres_storage_requirements:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.postgres_storage_requirements"
+                properties:
+                  requests:
+                    properties:
+                      storage:
+                        type: "string"
+                    type: "object"
+                  limits:
+                    properties:
+                      storage:
+                        type: "string"
+                    type: "object"
+                type: "object"
+              postgres_resource_requirements:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.postgres_resource_requirements"
+                properties:
+                  requests:
+                    properties:
+                      cpu:
+                        type: "string"
+                      memory:
+                        type: "string"
+                    type: "object"
+                  limits:
+                    properties:
+                      cpu:
+                        type: "string"
+                      memory:
+                        type: "string"
+                    type: "object"
+                type: "object"
+              postgres_storage_class:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.postgres_storage_class"
+                type: "string"
+              postgres_data_path:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.postgres_data_path"
+                type: "string"
+              ca_trust_bundle:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.ca_trust_bundle"
+                type: "string"
+              development_mode:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.development_mode"
+                type: "boolean"
+              ldap_cacert_secret:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.ldap_cacert_secret"
+                type: "string"
+              bundle_cacert_secret:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.bundle_cacert_secret"
+                type: "string"
+              projects_persistence:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.projects_persistence"
+                default: false
+                type: "boolean"
+              projects_use_existing_claim:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.projects_use_existing_claim"
+                type: "string"
+                enum:
+                - "_Yes_"
+                - "_No_"
+              projects_existing_claim:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.projects_existing_claim"
+                type: "string"
+              projects_storage_class:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.projects_storage_class"
+                type: "string"
+              projects_storage_size:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.projects_storage_size"
+                default: "8Gi"
+                type: "string"
+              projects_storage_access_mode:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.projects_storage_access_mode"
+                default: "ReadWriteMany"
+                type: "string"
+              extra_settings:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.spec.properties.extra_settings"
+                items:
+                  properties:
+                    setting:
+                      type: "string"
+                    value:
+                      x-kubernetes-preserve-unknown-fields: true
+                  type: "object"
+                type: "array"
+            type: "object"
+          status:
+            properties:
+              URL:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.status.properties.URL"
+                type: "string"
+              adminUser:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.status.properties.adminUser"
+                type: "string"
+              adminPasswordSecret:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.status.properties.adminPasswordSecret"
+                type: "string"
+              postgresConfigurationSecret:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.status.properties.postgresConfigurationSecret"
+                type: "string"
+              broadcastWebsocketSecret:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.status.properties.broadcastWebsocketSecret"
+                type: "string"
+              secretKeySecret:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.status.properties.secretKeySecret"
+                type: "string"
+              migratedFromSecret:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.status.properties.migratedFromSecret"
+                type: "string"
+              version:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.status.properties.version"
+                type: "string"
+              image:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.status.properties.image"
+                type: "string"
+              conditions:
+                description: "%awx-crd.yaml.spec.versions.schema.openAPIV3Schema.properties.status.properties.conditions"
+                items:
+                  properties:
+                    status:
+                      type: "string"
+                    type:
+                      type: "string"
+                    reason:
+                      type: "string"
+                    lastTransitionTime:
+                      type: "string"
+                  type: "object"
+                type: "array"
+            type: "object"
+        type: "object"
